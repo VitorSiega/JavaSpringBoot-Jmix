@@ -3,6 +3,8 @@
 
     <menu id="application" title="msg://com.company.onboardin/menu.application.title" opened="true">
         <item view="User.list" title="msg://com.company.onboardin.view.user/UserListView.title"/>
+        <item view="Step.list" title="msg://com.company.onboardin.view.step/stepListView.title"/>
+        <item view="Department.list" title="msg://com.company.onboardin.view.department/departmentListView.title"/>
     </menu>
 
 </menu-config>
