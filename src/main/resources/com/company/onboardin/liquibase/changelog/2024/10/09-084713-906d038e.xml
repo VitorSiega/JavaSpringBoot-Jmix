@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                      http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-latest.xsd"
+        objectQuotingStrategy="QUOTE_ONLY_RESERVED_WORDS">
+    <changeSet id="1" author="onboardin">
+        <dropForeignKeyConstraint baseTableName="USER_STEP" constraintName="FK_USER_STEP_ON_USER"/>
+    </changeSet>
+    <changeSet id="2" author="onboardin">
+        <addColumn tableName="USER_STEP">
+            <column name="COMPLETED_DATE" type="DATE"/>
+        </addColumn>
+    </changeSet>
+    <changeSet id="3" author="onboardin">
+        <addColumn tableName="USER_STEP">
+            <column name="DUE_DATE" type="DATE"/>
+        </addColumn>
+
+        <addNotNullConstraint columnName="DUE_DATE" defaultNullValue="current_date" tableName="USER_STEP"/>
+    </changeSet>
+    <changeSet id="4" author="onboardin">
+        <addColumn tableName="USER_STEP">
+            <column name="SORT_VALUE" type="INT"/>
+        </addColumn>
+
+        <addNotNullConstraint columnName="SORT_VALUE" defaultNullValue="0" tableName="USER_STEP"/>
+    </changeSet>
+    <changeSet id="5" author="onboardin">
+        <addColumn tableName="USER_STEP">
+            <column name="STEP_ID" type="UUID"/>
+        </addColumn>
+
+        <addNotNullConstraint columnName="STEP_ID" tableName="USER_STEP"/>
+    </changeSet>
+    <changeSet id="6" author="onboardin">
+        <createIndex indexName="IDX_USER_STEP_STEP" tableName="USER_STEP">
+            <column name="STEP_ID"/>
+        </createIndex>
+
+        <addForeignKeyConstraint baseColumnNames="STEP_ID" baseTableName="USER_STEP"
+                                 constraintName="FK_USER_STEP_ON_STEP" referencedColumnNames="ID"
+                                 referencedTableName="STEP"/>
+    </changeSet>
+    <changeSet id="7" author="onboardin">
+        <dropColumn columnName="DATA_CONCLUSAO" tableName="USER_STEP"/>
+
+        <dropColumn columnName="DATA_VENCIMENTO" tableName="USER_STEP"/>
+
+        <dropColumn columnName="ETAPA_ID" tableName="USER_STEP"/>
+
+        <dropColumn columnName="VALOR" tableName="USER_STEP"/>
+    </changeSet>
+    <changeSet id="8" author="onboardin">
+        <addForeignKeyConstraint baseColumnNames="USER_ID" baseTableName="USER_STEP"
+                                 constraintName="FK_USER_STEP_ON_USER" referencedColumnNames="ID"
+                                 referencedTableName="USER_"/>
+    </changeSet>
+    <changeSet id="9" author="onboardin">
+        <dropNotNullConstraint columnDataType="int" columnName="VERSION" tableName="USER_STEP"/>
+    </changeSet>
+</databaseChangeLog>

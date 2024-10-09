@@ -46,23 +46,17 @@
             <checkbox id="activeField" property="active"/>
             <select id="onboardingStatusField" property="onboardingStatus"/>
             <entityComboBox id="departmentField" property="department" itemsContainer="departmentsDc"/>
+            <datePicker id="joiningDateField" property="joiningDate"/>
         </formLayout>
         <hbox id="buttonsPanel" classNames="buttons-panel">
-            <button action="stepsDataGrid.create"/>
-            <button action="stepsDataGrid.edit"/>
-            <button action="stepsDataGrid.remove"/>
+            <button id="generateButton" text="Generate"/>
         </hbox>
         <dataGrid id="stepsDataGrid" dataContainer="stepsDc" width="100%" height="100%">
-            <actions>
-                <action id="create" type="list_create"/>
-                <action id="edit" type="list_edit"/>
-                <action id="remove" type="list_remove"/>
-            </actions>
             <columns>
                 <column property="version"/>
-                <column property="dataVencimento"/>
-                <column property="dataConclusao"/>
-                <column property="valor"/>
+                <column property="dueDate"/>
+                <column property="completedDate"/>
+                <column property="sortValue"/>
             </columns>
         </dataGrid>
         <hbox id="detailActions">

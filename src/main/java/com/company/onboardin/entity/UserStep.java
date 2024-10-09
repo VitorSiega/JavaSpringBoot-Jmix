@@ -10,8 +10,8 @@ import java.util.UUID;
 
 @JmixEntity
 @Table(name = "USER_STEP", indexes = {
-        @Index(name = "IDX_USER_STEP_USUARIO", columnList = "USUARIO_ID"),
-        @Index(name = "IDX_USER_STEP_ETAPA", columnList = "ETAPA_ID")
+        @Index(name = "IDX_USER_STEP_USER", columnList = "USER_ID"),
+        @Index(name = "IDX_USER_STEP_STEP", columnList = "STEP_ID")
 })
 @Entity
 public class UserStep {
@@ -20,69 +20,68 @@ public class UserStep {
     @Id
     private UUID id;
 
-    @Column(name = "VERSION", nullable = false)
-    @Version
+    @Column(name = "VERSION")
     private Integer version;
 
-    @JoinColumn(name = "USUARIO_ID", nullable = false)
+    @JoinColumn(name = "USER_ID", nullable = false)
     @NotNull
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
-    private User usuario;
+    private User user;
 
-    @JoinColumn(name = "ETAPA_ID", nullable = false)
+    @JoinColumn(name = "STEP_ID", nullable = false)
     @NotNull
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
-    private Step etapa;
+    private Step step;
 
-    @Column(name = "DATA_VENCIMENTO", nullable = false)
+    @Column(name = "DUE_DATE", nullable = false)
     @NotNull
-    private LocalDate dataVencimento;
+    private LocalDate dueDate;
 
-    @Column(name = "DATA_CONCLUSAO")
-    private LocalDate dataConclusao;
+    @Column(name = "COMPLETED_DATE")
+    private LocalDate completedDate;
 
-    @Column(name = "VALOR", nullable = false)
+    @Column(name = "SORT_VALUE", nullable = false)
     @NotNull
-    private Integer valor;
+    private Integer sortValue;
 
-    public Integer getValor() {
-        return valor;
+    public Integer getSortValue() {
+        return sortValue;
     }
 
-    public void setValor(Integer valor) {
-        this.valor = valor;
+    public void setSortValue(Integer sortValue) {
+        this.sortValue = sortValue;
     }
 
-    public LocalDate getDataConclusao() {
-        return dataConclusao;
+    public LocalDate getCompletedDate() {
+        return completedDate;
     }
 
-    public void setDataConclusao(LocalDate dataConclusao) {
-        this.dataConclusao = dataConclusao;
+    public void setCompletedDate(LocalDate completedDate) {
+        this.completedDate = completedDate;
     }
 
-    public LocalDate getDataVencimento() {
-        return dataVencimento;
+    public LocalDate getDueDate() {
+        return dueDate;
     }
 
-    public void setDataVencimento(LocalDate dataVencimento) {
-        this.dataVencimento = dataVencimento;
+    public void setDueDate(LocalDate dueDate) {
+        this.dueDate = dueDate;
     }
 
-    public Step getEtapa() {
-        return etapa;
+    public Step getStep() {
+        return step;
     }
 
-    public void setEtapa(Step etapa) {
-        this.etapa = etapa;
+    public void setStep(Step step) {
+        this.step = step;
     }
 
-    public User getUsuario() {
-        return usuario;
+    public User getUser() {
+        return user;
     }
 
-    public void setUsuario(User usuario) {
-        this.usuario = usuario;
+    public void setUser(User user) {
+        this.user = user;
     }
 
     public Integer getVersion() {
